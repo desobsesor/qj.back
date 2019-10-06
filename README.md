@@ -1,5 +1,5 @@
 # QJ
-Sistema para asignación en linea de partidas deportivas. <br>
+Sistema en linea para asignación inteligente de partidas deportivas. <br>
 _qj.cds.net.co_
 ============
 
@@ -7,7 +7,7 @@ Aplicación web Back - MongoDB-Mongoose-Express-Angular-NodeJS
 
 # QJ
 
-_App para ejecucion de recursos y funcionalidades de juegos deportivos reales a traves de asginaciones en linea_
+_App para ejecución de recursos y funcionalidades de juegos deportivos reales a traves de asginaciones en linea_
 
 ## Comenzando 🚀
 
