@@ -1,6 +1,6 @@
 {
     "@name": "QJ",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "description": "SISTEMA QUIERO JUGAR EN LINEA",
     "main": "serverQJ.js",
     "author": "Yovany Suarez Silva",
