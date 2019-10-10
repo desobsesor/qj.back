@@ -50,6 +50,10 @@ exports.getUsuariosEnListaPaginada = function (req, res) {
 
 // Obtiene todos los objetos Usuario de la base de datos
 exports.getUsuario = function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET');
+    res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
+
     Usuario.find(
         function (err, usuario) {
             if (err)

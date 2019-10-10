@@ -2,6 +2,9 @@
 var Empresa = require('../models/company/empresa');
 var RolUsuario = require('../models/login/rolUsuario');
 var ControllerRolUsuario = require('../controllers/login/controllerRolUsuario');
+var ControllerDisciplinaDeportiva = require('../controllers/player/controllerDisciplinaDeportiva');
+var ControllerPosicion = require('../controllers/player/controllerPosicion');
+var ControllerNivelDeportivo = require('../controllers/player/controllerNivelDeportivo');
 var Rol = require('../models/login/rol');
 var ControllerUsuario = require('../controllers/login/controllerUsuario');
 var Usuario = require('../models/login/usuario');
@@ -29,6 +32,11 @@ module.exports = function (app) {
     //#region RUTAS ABIERTAS DEL API
     //#region GESTIÓN DE SESIÓN DE USUARIO
     app.post('/api/login', function (req, res, next) {
+
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
+        res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
+
         var user = {
             usuario: req.body.usuario,
             passwordHash: req.body.passwordHash
@@ -69,13 +77,26 @@ module.exports = function (app) {
 
     //Destruir la sesión completa.
     app.get('/api/logout', function (req, res) {
+
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
+        res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
+
         req.session.destroy();
+        console.log('Sessión Destruida.');
         return res.status(200).json({msg: 'Sessión Destruida.'});
     });
     //#endregion
     //ROLES
     app.get('/api/rolUsuario/:usuario/:rol', ControllerRolUsuario.getRolYUsuario);
+    // DISCIPLINAS DEPORTIVAS
+    app.get('/api/disciplinasDeportivas', ControllerDisciplinaDeportiva.getDisciplinasDeportivas);
+    // POSICIONES
+    app.get('/api/posiciones', ControllerPosicion.getPosiciones);
+    // NIVELES DEPORTIVOS
+    app.get('/api/nivelesDeportivos', ControllerNivelDeportivo.getNivelesDeportivos);
     // USUARIOS
+    app.get('/api/usuario', ControllerUsuario.getUsuario);
     app.get('/api/usuario/:page/:rows/:esDetallado', ControllerUsuario.getUsuariosEnListaPaginada);
     app.post('/api/usuario', ControllerUsuario.setUsuario);
     app.put('/api/usuario/:usuario_id', ControllerUsuario.updateUsuario);

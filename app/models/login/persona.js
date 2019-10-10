@@ -50,7 +50,7 @@ module.exports = mongoose.model('Persona', {
 
 //db.persona.insert({
 //    nombres: "Yovany",
-//    apellidos: "Suárez Silva",
+//    apellidos: "Suarez Silva",
 //    documento: "6803296",
 //    sexo: "Masculino",
 //    fecha_nacimiento: new Date(1983, 3, 9)
