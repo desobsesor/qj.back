@@ -1,5 +1,5 @@
 //#region INICIANDO CONFIGURACION DEL SERVIDOR BACKEND - API - MONGODB
-var port = process.env.PORT || /*Puerto de la aplicacion*/ 5022;
+var port = process.env.PORT || /*Puerto de la aplicacion*/ 5023;
 
 //#region DEPENDENCIAS
 var favicon = require('serve-favicon');

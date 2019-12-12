@@ -5,6 +5,7 @@ var ControllerRolUsuario = require('../controllers/login/controllerRolUsuario');
 var ControllerDisciplinaDeportiva = require('../controllers/player/controllerDisciplinaDeportiva');
 var ControllerPosicion = require('../controllers/player/controllerPosicion');
 var ControllerNivelDeportivo = require('../controllers/player/controllerNivelDeportivo');
+var ControllerCampoDeportivo = require('../controllers/sportfield/controllerCampoDeportivo');
 var Rol = require('../models/login/rol');
 var ControllerUsuario = require('../controllers/login/controllerUsuario');
 var Usuario = require('../models/login/usuario');
@@ -95,6 +96,9 @@ module.exports = function (app) {
     app.get('/api/posiciones', ControllerPosicion.getPosiciones);
     // NIVELES DEPORTIVOS
     app.get('/api/nivelesDeportivos', ControllerNivelDeportivo.getNivelesDeportivos);
+    // NIVELES DEPORTIVOS
+    app.get('/api/camposDeportivos', ControllerCampoDeportivo.getCamposDeportivos);
+    app.post('/api/campoDeportivo', ControllerCampoDeportivo.setCampoDeportivo);
     // USUARIOS
     app.get('/api/usuario', ControllerUsuario.getUsuario);
     app.get('/api/usuario/:page/:rows/:esDetallado', ControllerUsuario.getUsuariosEnListaPaginada);
