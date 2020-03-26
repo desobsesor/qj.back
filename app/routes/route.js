@@ -89,7 +89,13 @@ module.exports = function (app) {
     });
     //#endregion
     //ROLES
-    app.get('/api/rolUsuario/:usuario/:rol', ControllerRolUsuario.getRolYUsuario);
+    app.get('/api/rolUsuario/:usuario/:rol', function (req, res) {
+
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
+        res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
+        ControllerRolUsuario.getRolYUsuario
+    });
     // DISCIPLINAS DEPORTIVAS
     app.get('/api/disciplinasDeportivas', ControllerDisciplinaDeportiva.getDisciplinasDeportivas);
     // POSICIONES

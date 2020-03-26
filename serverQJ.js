@@ -29,7 +29,7 @@ var sanitizer = require('sanitizer');
 
 //engine  = require 'ejs-locals';
 //app.engine('ejs', engine)
-
+app.use(cors());
 var http = require('http');
 app.use(cookieParser());
 app.use(express.static(__dirname));
@@ -57,7 +57,7 @@ app.use(session({
 }));
 //#endregion
 
-//#region Arrancando Servidor 
+//#region Arrancando Servidor
 require('./app/routes/route.js')(app);
 //index.html routing
 app.get('/', function (req, res) {
