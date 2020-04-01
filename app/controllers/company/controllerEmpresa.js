@@ -6,7 +6,7 @@ exports.getEmpresas = function (req, res) {
         function (err, empresa) {
             if (err)
                 res.send(err);
-            res.json(empresa); // devuelve todos los registros en base a una busqueda	
+            res.json(empresa); // devuelve todos los registros en base a una busqueda
         }
     );
 };
@@ -16,7 +16,7 @@ exports.getEmpresaPorID = function (req, res) {
         function (err, empresa) {
             if (err)
                 res.send(err);
-            res.json(empresa); // devuelve todos los registros		
+            res.json(empresa); // devuelve todos los registros
         }
     );
 };
@@ -27,7 +27,7 @@ exports.getEmpresa = function (req, res) {
         function (err, empresa) {
             if (err)
                 res.send(err);
-            res.json(empresa); // devuelve todos los registros		
+            res.json(empresa); // devuelve todos los registros
         }
     );
 };
@@ -47,10 +47,10 @@ exports.setEmpresa = function (req, res) {
                 res.send(err);
 
             // Obtine y devuelve todas las empresas tras crear una de ellas
-            Empresa.find(function (err, empresa) {
-                if (err)
-                    res.send(err);
-                res.json(empresa);
+            Empresa.find(function (err_, empresa_) {
+                if (err_)
+                    res.send(err_);
+                res.json(empresa_);
             });
         });
 };
@@ -66,10 +66,10 @@ exports.updateImagenEmpresa = function (req, res) {
             }
 
             // Obtine y devuelve todas las empresas tras crear una de ellas
-            Empresa.find(function (err, empresa) {
-                if (err)
-                    res.send(err)
-                res.json(empresa);
+            Empresa.find(function (err_, empresa_) {
+                if (err_)
+                    res.send(err_)
+                res.json(empresa_);
             });
         });
 };
@@ -88,11 +88,11 @@ exports.updateEmpresa = function (req, res) {
             if (err)
                 res.send(err);
 
-            // Obtine y devuelve todas las empresas tras crear una de ellas
-            Empresa.find(function (err, empresa) {
-                if (err)
-                    res.send(err);
-                res.json(empresa);
+            // Obtiene y devuelve todas las empresas tras crear una de ellas
+            Empresa.find(function (err_, empresa_) {
+                if (err_)
+                    res.send(err_);
+                res.json(empresa_);
             });
         });
 };
@@ -104,10 +104,10 @@ exports.removeEmpresa = function (req, res) {
             res.send(err);
 
         // Obtine y devuelve todas las empresas tras borrar una de ellas
-        Empresa.find(function (err, empresa) {
-            if (err)
-                res.send(err);
-            res.json(empresa);
+        Empresa.find(function (err_, empresa_) {
+            if (err_)
+                res.send(err_);
+            res.json(empresa_);
         });
     });
 };

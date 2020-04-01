@@ -1,31 +1,28 @@
 var Profesion = require('../../models/player/personalInformation/profesion');
 
-// validar profesion
 exports.getProfesions = function (req, res) {
-    Profesion.find({ profesion: req.params.profesion, passwordHash: req.params.password },
+    Profesion.find({profesion: req.params.profesion, passwordHash: req.params.password},
         function (err, profesion) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(profesion); // devuelve todos los registros en base a una busqueda	
+            }
+            res.json(profesion);
         }
     );
 };
 
-// Obtiene todos los objetos Profesion de la base de datos
 exports.getProfesion = function (req, res) {
     Profesion.find(
         function (err, profesion) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(profesion); // devuelve todos los registros		
+            }
+            res.json(profesion);
         }
     );
 };
 
-// Guarda un objeto Profesion en base de datos
 exports.setProfesion = function (req, res) {
-
-    // Creo el objeto Profesion
     Profesion.create(
         {
             profesion: req.body.profesion,
@@ -33,40 +30,36 @@ exports.setProfesion = function (req, res) {
             descripcion: req.body.descripcion
         },
         function (err, profesion) {
-            if (err)
-                res.send(err);
-
-            // Obtine y devuelve todas las profesions tras crear una de ellas
-            Profesion.find(function (err, profesion) {
-                if (err)
-                    res.send(err);
-                res.json(profesion);
-            });
-        });
-};
-
-// Modificamos un objeto Profesion de la base de datos
-exports.updateImagenProfesion = function (req, res) {
-    Profesion.update({ _id: req.params.profesion_id },
-        { $set: { imagen: req.params.profesion_imagen } },
-        function (err, profesion) {
             if (err) {
-                console.log(err);
                 res.send(err);
             }
-
-            // Obtine y devuelve todas las profesions tras crear una de ellas
-            Profesion.find(function (err, profesion) {
-                if (err)
-                    res.send(err)
-                res.json(profesion);
+            Profesion.find(function (err_, profesion_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(profesion_);
             });
         });
 };
 
-// Modificamos un objeto Profesion de la base de datos
+exports.updateImagenProfesion = function (req, res) {
+    Profesion.update({_id: req.params.profesion_id},
+        {$set: {imagen: req.params.profesion_imagen}},
+        function (err, profesion) {
+            if (err) {
+                res.send(err);
+            }
+            Profesion.find(function (err_, profesion_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(profesion_);
+            });
+        });
+};
+
 exports.updateProfesion = function (req, res) {
-    Profesion.update({ _id: req.params.profesion_id },
+    Profesion.update({_id: req.params.profesion_id},
         {
             $set: {
                 profesion: req.body.profesion,
@@ -75,29 +68,28 @@ exports.updateProfesion = function (req, res) {
             }
         },
         function (err, profesion) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            // Obtine y devuelve todas las profesions tras crear una de ellas
-            Profesion.find(function (err, profesion) {
-                if (err)
-                    res.send(err);
-                res.json(profesion);
+            }
+            Profesion.find(function (err_, profesion_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(profesion_);
             });
         });
 };
 
-// Elimino un objeto Profesion de la base de Datos
 exports.removeProfesion = function (req, res) {
-    Profesion.remove({ _id: req.params.profesion_id }, function (err, profesion) {
-        if (err)
+    Profesion.remove({_id: req.params.profesion_id}, function (err, profesion) {
+        if (err) {
             res.send(err);
-
-        // Obtine y devuelve todas las profesions tras borrar una de ellas
-        Profesion.find(function (err, profesion) {
-            if (err)
-                res.send(err);
-            res.json(profesion);
+        }
+        Profesion.find(function (err_, profesion_) {
+            if (err_) {
+                res.send(err_);
+            }
+            res.json(profesion_);
         });
     });
 };

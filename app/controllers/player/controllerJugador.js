@@ -1,13 +1,12 @@
-
 var Jugador = require('../../models/player/jugador');
 
-// validar jugador
 exports.getJugadores = function (req, res) {
     Jugador.find({ jugador: req.params.jugador, passwordHash: req.params.password },
         function (err, jugador) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(jugador); // devuelve todos las Jugadores en JSON		
+            }
+            res.json(jugador);
         }
     ).populate('estadoCivil')
     .populate('tipoDocumento')
@@ -15,14 +14,14 @@ exports.getJugadores = function (req, res) {
     .populate('sexo');
 };
 
-// buscar documento del jugador
 exports.getJugadorPorDocumento = function (req, res) {
     console.log("req.params.documento:"+req.params.documento);
     Jugador.find({ documento: req.params.documento },
         function (err, jugador) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(jugador); // devuelve todas las Jugadors en JSON		
+            }
+            res.json(jugador);
         }
     ).populate('estadoCivil')
     .populate('tipoDocumento')
@@ -30,14 +29,13 @@ exports.getJugadorPorDocumento = function (req, res) {
     .populate('sexo');
 };
 
-// buscar documento del jugador
 exports.getJugadoresEnListaPaginada = function (req, res) {
-    //console.log("req.params.documento:" + req.params.page);
     Jugador.find(
         function (err, jugador) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(jugador); // devuelve todas las Jugadors en JSON		
+            }
+            res.json(jugador);
         }
     ).populate('estadoCivil')
     .populate('tipoDocumento')
@@ -52,7 +50,7 @@ exports.getJugador = function (req, res) {
         function (err, jugador) {
             if (err)
                 res.send(err);
-            res.json(jugador); // devuelve todas las Jugadors en JSON		
+            res.json(jugador); // devuelve todas las Jugadors en JSON
         }
     ).populate('estadoCivil')
         .populate('tipoDocumento')
@@ -60,16 +58,9 @@ exports.getJugador = function (req, res) {
         .populate('sexo');
 };
 
-// Guarda un objeto Jugador en base de datos
 exports.setJugador = function (req, res) {
-    // Creo el objeto Jugador
-    console.log("ini//req.body");
-    console.log(req.body);
-    console.log("fin//req.body");
-
     var imgPath = './public/images/bg5.png';
     var imgPathBanner = './public/images/quierojugar.png';
-
     Jugador.create(
         {
             nombres: {
@@ -148,11 +139,11 @@ exports.setJugador = function (req, res) {
             console.log(jugador);
             console.log("//creando jugador");
             // Obtine y devuelve todas los jugadores tras crear uno de ellos
-            Jugador.find(function (err, jugador) {
-                if (err)
-                    res.send(err);
-
-                res.json(jugador);
+            Jugador.find(function (err_, jugador_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(jugador_);
 
             }).populate('estadoCivil')
                 .populate('tipoDocumento')
@@ -161,26 +152,23 @@ exports.setJugador = function (req, res) {
         });
 };
 
-// Modificamos un objeto Jugador de la base de datos
 exports.updateImagenJugador = function (req, res) {
     Jugador.update({ _id: req.params.jugador_id },
         { $set: { imagen: req.params.jugador_imagen } },
         function (err, jugador) {
             if (err) {
-                console.log(err);
                 res.send(err);
             }
 
-            // Obtine y devuelve todas las jugadors tras crear una de ellas
-            Jugador.find(function (err, jugador) {
-                if (err)
-                    res.send(err);
-                res.json(jugador);
+            Jugador.find(function (err_, jugador_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(jugador_);
             });
         });
 };
 
-// Modificamos un objeto Jugador de la base de datos
 exports.updateJugador = function (req, res) {
     Jugador.update({ _id: req.params.jugador_id },
         {
@@ -244,10 +232,11 @@ exports.updateJugador = function (req, res) {
                 res.send(err);
 
             // Obtine y devuelve todas las jugadors tras crear una de ellas
-            Jugador.find(function (err, jugador) {
-                if (err)
-                    res.send(err);
-                res.json(jugador);
+            Jugador.find(function (err_, jugador_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(jugador_);
             }).populate('estadoCivil')
             .populate('tipoDocumento')
             .populate('nivelEducativo')
@@ -255,17 +244,16 @@ exports.updateJugador = function (req, res) {
         });
 };
 
-// Elimino un objeto Jugador de la base de Datos
 exports.removeJugador = function (req, res) {
     Jugador.remove({ _id: req.params.jugador_id }, function (err, jugador) {
-        if (err)
+        if (err) {
             res.send(err);
-
-        // Obtine y devuelve todas las jugadors tras borrar una de ellas
-        Jugador.find(function (err, jugador) {
-            if (err)
-                res.send(err);
-            res.json(jugador);
+        }
+        Jugador.find(function (err_, jugador_) {
+            if (err_) {
+                res.send(err_);
+            }
+            res.json(jugador_);
         }).populate('estadoCivil')
         .populate('tipoDocumento')
         .populate('nivelEducativo')

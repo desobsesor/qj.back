@@ -1,5 +1,5 @@
 //#region INICIANDO CONFIGURACION DEL SERVIDOR BACKEND - API - MONGODB
-var port = process.env.PORT || /*Puerto de la aplicacion*/ 5022;
+var port = process.env.PORT || /*Puerto de la aplicacion*/ 5023;
 
 //#region DEPENDENCIAS
 var favicon = require('serve-favicon');
@@ -29,7 +29,7 @@ var sanitizer = require('sanitizer');
 
 //engine  = require 'ejs-locals';
 //app.engine('ejs', engine)
-
+app.use(cors());
 var http = require('http');
 app.use(cookieParser());
 app.use(express.static(__dirname));
@@ -57,7 +57,7 @@ app.use(session({
 }));
 //#endregion
 
-//#region Arrancando Servidor 
+//#region Arrancando Servidor
 require('./app/routes/route.js')(app);
 //index.html routing
 app.get('/', function (req, res) {
@@ -75,7 +75,7 @@ app.use(function (error, req, res, next) {
     res.render('./public/500.html', {title: '500: Error interno del servidor', error: error});
 });
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "localhost:8081");
     res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
     res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
     next();

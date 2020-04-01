@@ -1,29 +1,27 @@
-
 var Persona = require('../../models/player/personalInformation/persona');
 
-// validar persona
 exports.getPersonas = function (req, res) {
-    Persona.find({ persona: req.params.persona, passwordHash: req.params.password },
+    Persona.find({persona: req.params.persona, passwordHash: req.params.password},
         function (err, persona) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(persona); // devuelve todas las Personas en JSON		
+            }
+            res.json(persona);
         }
     );
 };
 
-// Obtiene todos los objetos Persona de la base de datos
 exports.getPersona = function (req, res) {
     Persona.find(
         function (err, persona) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(persona); // devuelve todas las Personas en JSON		
+            }
+            res.json(persona);
         }
     );
 };
 
-// Guarda un objeto Persona en base de datos
 exports.setPersona = function (req, res) {
     // Creo el objeto Persona
     Persona.create(
@@ -74,41 +72,38 @@ exports.setPersona = function (req, res) {
             fechaCambio: Date.now()
         },
         function (err, persona) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            // Obtiene y devuelve todas las personas tras crear una de ellas
-            Persona.find(function (err, persona) {
-                if (err)
-                    res.send(err);
-                res.json(persona);
+            }
+            Persona.find(function (err_, persona_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(persona_);
             });
         }
     );
 };
 
-// Modificamos un objeto Persona de la base de datos
 exports.updateImagenPersona = function (req, res) {
-    Persona.update({ _id: req.params.persona_id },
-        { $set: { imagen: req.params.persona_imagen } },
+    Persona.update({_id: req.params.persona_id},
+        {$set: {imagen: req.params.persona_imagen}},
         function (err, persona) {
             if (err) {
                 console.log(err);
                 res.send(err);
             }
-
-            // Obtine y devuelve todas las personas tras crear una de ellas
-            Persona.find(function (err, persona) {
-                if (err)
-                    res.send(err)
-                res.json(persona);
+            Persona.find(function (err_, persona_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(persona_);
             });
         });
 };
 
-// Modificamos un objeto Persona de la base de datos
 exports.updatePersona = function (req, res) {
-    Persona.update({ _id: req.params.persona_id },
+    Persona.update({_id: req.params.persona_id},
         {
             $set: {
                 nombres: {
@@ -158,29 +153,28 @@ exports.updatePersona = function (req, res) {
             }
         },
         function (err, persona) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            // Obtine y devuelve todas las personas tras crear una de ellas
-            Persona.find(function (err, persona) {
-                if (err)
-                    res.send(err);
-                res.json(persona);
+            }
+            Persona.find(function (err_, persona_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(persona_);
             });
         });
 };
 
-// Elimino un objeto Persona de la base de Datos
 exports.removePersona = function (req, res) {
-    Persona.remove({ _id: req.params.persona_id }, function (err, persona) {
+    Persona.remove({_id: req.params.persona_id}, function (err, persona) {
         if (err)
             res.send(err);
 
-        // Obtine y devuelve todas las personas tras borrar una de ellas
-        Persona.find(function (err, persona) {
-            if (err)
-                res.send(err);
-            res.json(persona);
+        Persona.find(function (err_, persona_) {
+            if (err_) {
+                res.send(err_);
+            }
+            res.json(persona_);
         });
     });
 };

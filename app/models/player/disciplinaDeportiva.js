@@ -13,5 +13,7 @@ module.exports = mongoose.model('DisciplinaDeportiva', {
     personaCambio: {type: Schema.ObjectId, ref: "Persona"},
     fechaCambio: {type: Date, default: Date.now()},
     fotoPrincipal: {data: Buffer, contentType: String},
+    clase: String,
+    icono: String,
     fotoBanner: {data: Buffer, contentType: String}
 });

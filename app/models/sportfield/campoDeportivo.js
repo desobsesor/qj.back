@@ -20,5 +20,7 @@ module.exports = mongoose.model('CampoDeportivo', {
     personaRegistro: { type: Schema.ObjectId, ref: "Persona" },
     fechaRegistro: { type: Date, default: Date.now() },
     personaCambio: { type: Schema.ObjectId, ref: "Persona" },
-    fechaCambio: { type: Date, default: Date.now() }
+    fechaCambio: { type: Date, default: Date.now() },
+    clase: String,
+    icono: String
 });

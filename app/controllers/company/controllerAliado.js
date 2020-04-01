@@ -8,7 +8,7 @@ exports.getAliado = function (req, res) {
             function (err, aliado) {
                 if (err)
                     res.send(err)
-                res.json(aliado); // devuelve todas las Aliados en JSON		
+                res.json(aliado); // devuelve todas las Aliados en JSON
             }
     );
 }
@@ -35,10 +35,10 @@ exports.setAliado = function (req, res) {
             res.send(err);
 
         // Obtine y devuelve todas las aliados tras crear una de ellas
-        Aliado.find(function (err, aliado) {
-            if (err)
-                res.send(err)
-            res.json(aliado);
+        Aliado.find(function (err_, aliado_) {
+            if (err_)
+                res.send(err_)
+            res.json(aliado_);
         });
     });
 
@@ -63,10 +63,10 @@ exports.updateAliado = function (req, res) {
             res.send(err);
 
         // Obtine y devuelve todas las aliados tras crear una de ellas
-        Aliado.find(function (err, aliado) {
-            if (err)
-                res.send(err)
-            res.json(aliado);
+        Aliado.find(function (err_, aliado_) {
+            if (err_)
+                res.send(err_)
+            res.json(aliado_);
         });
     });
 }
@@ -78,10 +78,10 @@ exports.removeAliado = function (req, res) {
             res.send(err);
 
         // Obtine y devuelve todas las aliados tras borrar una de ellas
-        Aliado.find(function (err, aliado) {
-            if (err)
-                res.send(err)
-            res.json(aliado);
+        Aliado.find(function (err_, aliado_) {
+            if (err_)
+                res.send(err_)
+            res.json(aliado_);
         });
     });
 }

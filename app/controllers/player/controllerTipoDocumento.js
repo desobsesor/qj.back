@@ -2,30 +2,28 @@ var TipoDocumento = require('../../models/player/personalInformation/tipoDocumen
 
 // validar tipoDocumento
 exports.getTipoDocumentos = function (req, res) {
-    TipoDocumento.find({ tipoDocumento: req.params.tipoDocumento, passwordHash: req.params.password },
+    TipoDocumento.find({tipoDocumento: req.params.tipoDocumento, passwordHash: req.params.password},
         function (err, tipoDocumento) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(tipoDocumento); // devuelve todos los registros en base a una busqueda	
+            }
+            res.json(tipoDocumento);
         }
     );
 };
 
-// Obtiene todos los objetos TipoDocumento de la base de datos
 exports.getTipoDocumento = function (req, res) {
     TipoDocumento.find(
         function (err, tipoDocumento) {
-            if (err)
+            if (err) {
                 res.send(err);
-            res.json(tipoDocumento); // devuelve todos los registros		
+            }
+            res.json(tipoDocumento);
         }
     );
 };
 
-// Guarda un objeto TipoDocumento en base de datos
 exports.setTipoDocumento = function (req, res) {
-
-    // Creo el objeto TipoDocumento
     TipoDocumento.create(
         {
             tipoDocumento: req.body.tipoDocumento,
@@ -33,40 +31,36 @@ exports.setTipoDocumento = function (req, res) {
             descripcion: req.body.descripcion
         },
         function (err, tipoDocumento) {
-            if (err)
-                res.send(err);
-
-            // Obtine y devuelve todas las tipoDocumentos tras crear una de ellas
-            TipoDocumento.find(function (err, tipoDocumento) {
-                if (err)
-                    res.send(err);
-                res.json(tipoDocumento);
-            });
-        });
-};
-
-// Modificamos un objeto TipoDocumento de la base de datos
-exports.updateImagenTipoDocumento = function (req, res) {
-    TipoDocumento.update({ _id: req.params.tipoDocumento_id },
-        { $set: { imagen: req.params.tipoDocumento_imagen } },
-        function (err, tipoDocumento) {
             if (err) {
-                console.log(err);
                 res.send(err);
             }
-
-            // Obtine y devuelve todas las tipoDocumentos tras crear una de ellas
-            TipoDocumento.find(function (err, tipoDocumento) {
-                if (err)
-                    res.send(err)
-                res.json(tipoDocumento);
+            TipoDocumento.find(function (err_, tipoDocumento_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(tipoDocumento_);
             });
         });
 };
 
-// Modificamos un objeto TipoDocumento de la base de datos
+exports.updateImagenTipoDocumento = function (req, res) {
+    TipoDocumento.update({_id: req.params.tipoDocumento_id},
+        {$set: {imagen: req.params.tipoDocumento_imagen}},
+        function (err, tipoDocumento) {
+            if (err) {
+                res.send(err);
+            }
+            TipoDocumento.find(function (err_, tipoDocumento_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(tipoDocumento_);
+            });
+        });
+};
+
 exports.updateTipoDocumento = function (req, res) {
-    TipoDocumento.update({ _id: req.params.tipoDocumento_id },
+    TipoDocumento.update({_id: req.params.tipoDocumento_id},
         {
             $set: {
                 tipoDocumento: req.body.tipoDocumento,
@@ -75,29 +69,28 @@ exports.updateTipoDocumento = function (req, res) {
             }
         },
         function (err, tipoDocumento) {
-            if (err)
+            if (err) {
                 res.send(err);
-
-            // Obtine y devuelve todas las tipoDocumentos tras crear una de ellas
-            TipoDocumento.find(function (err, tipoDocumento) {
-                if (err)
-                    res.send(err);
-                res.json(tipoDocumento);
+            }
+            TipoDocumento.find(function (err_, tipoDocumento_) {
+                if (err_) {
+                    res.send(err_);
+                }
+                res.json(tipoDocumento_);
             });
         });
 };
 
-// Elimino un objeto TipoDocumento de la base de Datos
 exports.removeTipoDocumento = function (req, res) {
-    TipoDocumento.remove({ _id: req.params.tipoDocumento_id }, function (err, tipoDocumento) {
+    TipoDocumento.remove({_id: req.params.tipoDocumento_id}, function (err, tipoDocumento) {
         if (err)
             res.send(err);
 
-        // Obtine y devuelve todas las tipoDocumentos tras borrar una de ellas
-        TipoDocumento.find(function (err, tipoDocumento) {
-            if (err)
-                res.send(err);
-            res.json(tipoDocumento);
+        TipoDocumento.find(function (err_, tipoDocumento_) {
+            if (err_) {
+                res.send(err_);
+            }
+            res.json(tipoDocumento_);
         });
     });
 };
