@@ -1,22 +1,20 @@
 var NivelDeportivo = require('../../models/player/nivelDeportivo');
 
-// Obtiene todos las disciplinas deportivas registradas en la base de datos
 exports.getNivelesDeportivos = function (req, res) {
-    res.header("Access-Control-Allow-Origin", "*");
+    /*res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET');
-    res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
-
+    res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");*/
     NivelDeportivo.find(
         function (err, nivelDeportivo) {
-            if (err)
-                res.send(err)
+            if (err) {
+                res.send(err);
+            }
             res.json(nivelDeportivo);
         }
     ).populate('personaRegistro')
         .populate('disciplinaDeportiva');
 }
 
-// Guarda una nueva disciplina deportiva (Athletic Discipline)
 exports.setDisciplinaDeportiva = function (req, res) {
     DisciplinaDeportiva.create({
             nombre: req.body.nombre,
@@ -31,16 +29,15 @@ exports.setDisciplinaDeportiva = function (req, res) {
             fotoBanner: req.body.fotoBanner,
     },
         function (err, disciplinaDeportiva) {
-            if (err)
+            if (err) {
                 res.send(err);
-
+            }
             Usuario.find({ _id: usuario._id },
-                function (err, newDisciplinaDeportiva) {
-                    if (err)
-                        return next(err);
-
-                    res.json(newDisciplinaDeportiva);
-
+                function (err_, newDisciplinaDeportiva_) {
+                    if (err_) {
+                        return next(err_);
+                    }
+                    res.json(newDisciplinaDeportiva_);
                 }).populate('persona');
         });
 };

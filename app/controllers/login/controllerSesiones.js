@@ -13,7 +13,7 @@ exports.bienvenida = function(req, res){
        res.sendFile('./public/pricing');
       //res.render('pricing', {nombre: req.session.usuario});
    }else{
-      //res.redirect('/api/identificacion');
+      res.redirect('/api/identificacion');
    }
 };
 

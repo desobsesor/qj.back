@@ -1,12 +1,11 @@
 var DisciplinaDeportiva = require('../../models/player/disciplinaDeportiva');
 
-// Obtiene todos las disciplinas deportivas registradas en la base de datos
 exports.getDisciplinasDeportivas = function (req, res) {
     DisciplinaDeportiva.find(
         function (err, disciplinaDeportiva) {
-            if (err)
-                res.send(err)
-
+            if (err) {
+                res.send(err);
+            }
 /*
             res.header("Access-Control-Allow-Origin", "*");
             res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
@@ -18,7 +17,6 @@ exports.getDisciplinasDeportivas = function (req, res) {
     ).populate('personaRegistro');
 }
 
-// Guarda una nueva disciplina deportiva (Athletic Discipline)
 exports.setDisciplinaDeportiva = function (req, res) {
     DisciplinaDeportiva.create({
             nombre: req.body.nombre,
@@ -33,15 +31,15 @@ exports.setDisciplinaDeportiva = function (req, res) {
             fotoBanner: req.body.fotoBanner,
         },
         function (err, disciplinaDeportiva) {
-            if (err)
+            if (err) {
                 res.send(err);
-
+            }
             Usuario.find({_id: usuario._id},
-                function (err, newDisciplinaDeportiva) {
-                    if (err)
-                        return next(err);
-
-                    res.json(newDisciplinaDeportiva);
+                function (err_, newDisciplinaDeportiva_) {
+                    if (err_) {
+                        return next(err_);
+                    }
+                    res.json(newDisciplinaDeportiva_);
 
                 }).populate('persona');
         });

@@ -1,21 +1,21 @@
 var CampoDeportivo = require('../../models/sportfield/campoDeportivo');
 
-// Obtiene todos las disciplinas deportivas registradas en la base de datos
 exports.getCamposDeportivos = function (req, res) {
+   /*
     res.header("Access-Control-Allow-Origin", "*");
     res.header('Access-Control-Allow-Methods', 'GET');
     res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
-
+*/
     CampoDeportivo.find(
         function (err, campoDeportivo) {
-            if (err)
-                res.send(err)
+            if (err) {
+                res.send(err);
+            }
             res.json(campoDeportivo);
         }
     ).populate('propietario');
 }
 
-// Guarda una nueva disciplina deportiva (Athletic Discipline)
 exports.setCampoDeportivo = function (req, res) {
     CampoDeportivo.create({
             nombre: req.body.nombre,
@@ -39,16 +39,15 @@ exports.setCampoDeportivo = function (req, res) {
             icono: req.body.icono
     },
         function (err, campoDeportivo) {
-            if (err)
+            if (err) {
                 res.send(err);
-
+            }
             CampoDeportivo.find({ _id: campoDeportivo._id },
-                function (err, newCampoDeportivo) {
-                    if (err)
-                        return next(err);
-
-                    res.json(newCampoDeportivo);
-
+                function (err_, newCampoDeportivo_) {
+                    if (err_) {
+                        return next(err_);
+                    }
+                    res.json(newCampoDeportivo_);
                 }).populate('propietario')
                 .populate('administrador');
         });
