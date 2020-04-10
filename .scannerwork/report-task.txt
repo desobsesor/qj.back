@@ -2,5 +2,5 @@ projectKey=QJBack
 serverUrl=http://localhost:9000
 serverVersion=8.2.0.32929
 dashboardUrl=http://localhost:9000/dashboard?id=QJBack
-ceTaskId=AXEzDCD3HQyTLEdIe1F1
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXEzDCD3HQyTLEdIe1F1
+ceTaskId=AXE2FgjPHQyTLEdIe1F4
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXE2FgjPHQyTLEdIe1F4

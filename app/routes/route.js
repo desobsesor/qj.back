@@ -28,60 +28,29 @@ var mime = require('mime');
 var fs = require('fs');
 var sesiones = require('../controllers/login/controllerSesiones');
 
+
 module.exports = function (app) {
 
     //#region RUTAS ABIERTAS DEL API
     //#region GESTIÓN DE SESIÓN DE USUARIO
 
     const auth = function (req, res, next) {
-        //if (req.session && req.session.user === "jose" && req.session.admin)
-        if (req.session /*&& req.session.usuario*/ && req.session.admin)
+        console.log('entro al auth en el back con sessión: ', req.session);
+        //if (req.session.usuario && req.session.admin)
             return next();
-        else
-            return res.sendStatus(401);
+        //else
+         //   return res.sendStatus(401);
     };
 
-    app.post('/api/login', function (req, res, next) {
-
-        //res.header("Access-Control-Allow-Origin", "*");
-        //res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
-        //res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
-        //res.header("Access-Control-Expose-Headers", "Authorization");
-
-        var user = {
-            usuario: req.body.usuario,
-            passwordHash: req.body.passwordHash
-        };
-        Usuario.findOne(user, function (err, newUser) {
-            if (err) {
-                return res.status(500).json({
-                    msg: 'Error login'
-                });
-            }
-            if (!newUser) {
-                return res.status(404).json({
-                    msg: 'No existe'
-                });
-            } else {
-                console.log(newUser);
-                req.session.usuario = newUser;
-                req.session.admin = true;
-            }
-
-            return res.status(200).json(newUser);
-
-        }).populate("persona")
-            .populate("rol")
-            .populate("nivelEducativo");
-    });
+    app.post('/api/login', ControllerUsuario.getUsuario);
 
     //Destruir la sesión completa.
-    app.get('/api/logout', auth, function (req, res) {
-/*
+    app.get('/api/logout',auth, function (req, res) {
+
         res.header("Access-Control-Allow-Origin", "*");
         res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
         res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
-*/
+
         req.session.destroy();
         console.log('Sessión Destruida.');
         return res.status(200).json({msg: 'Sessión Destruida.'});
@@ -109,6 +78,7 @@ module.exports = function (app) {
     app.get('/api/usuario/:page/:rows/:esDetallado', ControllerUsuario.getUsuariosEnListaPaginada);
     app.post('/api/usuario', ControllerUsuario.setUsuario);
     app.put('/api/usuario/:usuario_id', ControllerUsuario.updateUsuario);
+    app.delete('/api/usuario/:usuario_id', ControllerUsuario.removeUsuario);
     // ESCENARIOS
     app.get('/api/cancha', ControllerCancha.getCancha);
     //app.get('/api/cancha/:campoDeportivo', ControllerCancha.getCanchasPorTipo);

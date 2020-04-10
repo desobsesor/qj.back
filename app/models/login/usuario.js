@@ -2,17 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Usuario', {
-    usuario: String,
+    usuario: {type: String, required: true, trim: true, unique: true},
     nombreCompleto: String,
-    documento: String,
-    passwordHash: String,
+    documento: {type: String, required: true, trim: true, unique: true},
+    passwordHash: {type: String, required: true, trim: true},
     passwordSalt: String,
-    persona: { type: Schema.ObjectId, ref: "Persona" },
+    persona: {type: Schema.ObjectId, ref: "Persona"},
     activo: Boolean,
-    correo: String,
-    nivelEducativo: { type: Schema.ObjectId, ref: "NivelEducativo" },
+    correo: {type: String, required: true, trim: true, unique: true},
+    nivelEducativo: {type: Schema.ObjectId, ref: "NivelEducativo"},
     telefono: String,
     direccion: String,
     imagen: String,
-    rol: { type: Schema.ObjectId, ref: "Rol" }
+    rol: {type: Schema.ObjectId, ref: "Rol"},
+    token: String
 });
