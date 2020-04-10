@@ -27,6 +27,12 @@ var fs = require('fs');
 var sanitizer = require('sanitizer');
 //#endregion
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'localhost:8081');
+    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept');
+    next();
+});
 //engine  = require 'ejs-locals';
 //app.engine('ejs', engine)
 app.use(cors());
@@ -74,17 +80,12 @@ app.use(function (error, req, res, next) {
     console.log('error:', error);
     res.render('./public/500.html', {title: '500: Error interno del servidor', error: error});
 });
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "localhost:8081");
-    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "content-type, Authorization, Content-Length, X-Requested-With, Origin, Accept");
-    next();
-});
+
 //#endregion
 
 //#region ARRANCANDO EL SERVIDOR NODE PARA LA APLICACIÓN
 var server = http.createServer(app);
-server.listen(process.env.PORT || port, function () {
+server.listen(process.env.PORT || port, () => {
     console.log('App iniciada en el puerto: ' + port);
 });
 //#endregion
