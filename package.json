@@ -34,7 +34,7 @@
         "sharp": "^0.22.0",
         "socket.io": "^2.4.0",
         "util": "^0.11.1",
-        "xlsx": "^0.14.1"
+        "xlsx": "^0.17.0"
     },
     "keywords": [
         "Quiero Jugar, planeacion inteligente de actividades deportivas",
