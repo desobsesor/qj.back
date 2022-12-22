@@ -17,7 +17,7 @@
         "express": "^4.16.3",
         "express-session": "^1.15.6",
         "gridfs-stream": "^1.1.1",
-        "jsonwebtoken": "^8.5.1",
+        "jsonwebtoken": "^9.0.0",
         "mdmenu": "^0.0.2",
         "method-override": "^3.0.0",
         "mongoose": "^5.7.5",
